@@ -102,7 +102,7 @@ function buildGrid(row, cols) {
   gameContainer.style.setProperty("--grid-cols", cols);
   for (i = 0; i < row * cols; i++) {
     let cell = document.createElement("button"); // create a button for each number
-    cell.innerText = i; //added number to button starting with #1
+    // cell.innerText = i; //added number to button starting with #1
     cell.className = "grid-item";
       cell.id = (i); // added an id to each button
     gameContainer.append(cell); // appended to display
@@ -178,5 +178,14 @@ minePlacement = [e]
   }
 }
 });
-
+setTimeout(displayLoss, 1000);
 };
+
+
+function displayLoss(){
+alert("you lose")
+}
+
+function displayWin(){
+alert("you win")
+}
