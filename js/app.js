@@ -129,3 +129,19 @@ const gameContainer = document.querySelector(".gameBoard");
     return [...nums];
     
 }
+
+function addFriends(){
+    console.log(friends)
+        let placed = 0;
+        while (placed < friends) {
+          let column = Math.floor(Math.random() * columns);
+          let row = Math.floor(Math.random() * rows);
+          let minespot = column * row
+       
+          if (boardButtons[minespot].id != "mine") {
+              console.log(boardButtons[minespot] )
+            boardButtons[minespot].id = 'mine';
+            placed++;
+          }
+        } 
+    }
