@@ -120,3 +120,12 @@ const gameContainer = document.querySelector(".gameBoard");
   function handleClick(e){
 
   }
+
+  const randomUniqueNumbers = (range, count) => {
+    nums = new Set();
+    while (nums.size < count) {
+        nums.add(Math.floor(Math.random() * (range - 1 + 1) + 1));
+    }
+    return [...nums];
+    
+}
