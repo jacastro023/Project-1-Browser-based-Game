@@ -6,6 +6,8 @@ let secondsLabel = document.querySelector(".seconds");
 let friendsLeft = document.querySelector(".friendsLeft");
 let flagsLeft = document.querySelector(".flagsLeft");
 let totalSeconds = 0; //variable to hold the seconds
+let rows = "" 
+let columns = ""
 
 
 // setting timer to display seconds and minutes
@@ -28,3 +30,20 @@ function timer(val)
         return valString; // else just return the value of seconds
     }
 }
+
+const gameContainer = document.querySelector(".gameBoard");
+//   console.log(gameContainer)
+// function that created the grid based on user choice
+  function buildGrid(row, cols) {
+      console.log(row)
+      console.log(cols)
+      gameContainer.style.setProperty('--grid-rows', rows);
+      gameContainer.style.setProperty('--grid-cols', cols);
+    for (i = 0; i < (row * cols); i++) {
+      let cell = document.createElement("button"); // create a button for each number
+      cell.innerText = (i + 1); //added number to button starting with #1
+      cell.className = "grid-item"
+    //   cell.id = (i + 1); // added an id to each button
+      gameContainer.append(cell) // appended to display
+    };
+  };
