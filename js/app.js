@@ -47,3 +47,10 @@ const gameContainer = document.querySelector(".gameBoard");
       gameContainer.append(cell) // appended to display
     };
   };
+
+  // event listener on board div
+  document.querySelector('.gameBoard').addEventListener('click', handleClick);
+
+  function handleClick(e){
+
+  }
