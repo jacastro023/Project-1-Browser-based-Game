@@ -44,7 +44,7 @@ input{
 }
 
 .grid-item {
-    padding: 1em;
+    padding: 2em;
     border: 2px solid black;
     text-align: center;
   }
@@ -77,4 +77,13 @@ input{
   button.wrong-square {
     background-color: red;
     cursor: not-allowed;
+  }
+
+  .restartButton{
+    display: none;
+    width: 50%;
+    justify-content: center;
+    margin-left: 25%;
+    font-size: xx-large;
+    margin-top: 20px;
   }

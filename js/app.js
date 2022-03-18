@@ -5,6 +5,8 @@ let minutesLabel = document.querySelector(".minutes");
 let secondsLabel = document.querySelector(".seconds");
 let friendsLeft = document.querySelector(".friendsLeft");
 let flagsLeft = document.querySelector(".flagsLeft");
+let resetButton = document.querySelector(".restartButton")
+let gameGrid = document.querySelector(".gameBoard")
 let totalSeconds = 0;
 let boardButtons = "";
 let numsArray = "";
@@ -59,6 +61,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
     addFriends();
+    resetButton.style.display = "flex"
   } else if (friends === "10") {
     startingDiv.style.display = "none";
     buildGrid(9, 9);
@@ -74,6 +77,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
     addFriends();
+    resetButton.style.display = "flex"
   } else if (friends === "30") {
     startingDiv.style.display = "none";
     buildGrid(12, 12);
@@ -89,6 +93,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
     addFriends();
+    resetButton.style.display = "flex"
   }
 }
 
