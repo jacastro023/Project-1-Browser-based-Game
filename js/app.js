@@ -10,6 +10,7 @@ let boardButtons = "";
 let numsArray = "";
 let rows = "";
 let columns = "";
+let minelocation = [];
 
 // setting timer to display seconds and minutes
 function setTime() {
@@ -101,9 +102,9 @@ function buildGrid(row, cols) {
   gameContainer.style.setProperty("--grid-cols", cols);
   for (i = 0; i < row * cols; i++) {
     let cell = document.createElement("button"); // create a button for each number
-    cell.innerText = i + 1; //added number to button starting with #1
+    cell.innerText = i; //added number to button starting with #1
     cell.className = "grid-item";
-    //   cell.id = (i + 1); // added an id to each button
+      cell.id = (i); // added an id to each button
     gameContainer.append(cell); // appended to display
   }
 }
@@ -112,9 +113,10 @@ function buildGrid(row, cols) {
 document.querySelector(".gameBoard").addEventListener("click", handleClick);
 
 function handleClick(e) {
-  console.log(e.target.id); // <- gives the element we are clicking on!
-  if (e.target.id === "mine"){
-      e.target.className = "grid-item wrong-square"
+
+  if (e.target.className === "grid-item mine"){
+    e.target.className = "grid-item wrong-square"
+    showAllWrong();
   } else {
     e.target.className = "grid-item valid-square"
   }
@@ -138,10 +140,43 @@ function addFriends() {
     let row = Math.floor(Math.random() * rows);
     let minespot = column * row;
 
-    if (boardButtons[minespot].id != "mine") {
+    if (boardButtons[minespot].className != "grid-item mine") {
       console.log(boardButtons[minespot]);
-      boardButtons[minespot].id = "mine";
+      boardButtons[minespot].className = "grid-item mine";
+      // minespot = boardButtons[minespot].innerText
       placed++;
+      console.log(minespot)
+      minelocation.push(minespot);
+      
     }
   }
 }
+
+function showAllWrong() {
+console.log(minelocation)
+let minePlacement = ""
+// console.log(e.target.id)
+// console.log(boardButtons)
+let checkButtons = Array.from(boardButtons)
+// console.log(checkButtons)
+
+minelocation.forEach(e => {
+minePlacement = [e]
+
+  for (let i = 0; i < checkButtons.length; i++) {
+// console.log(minePlacement[0])
+// console.log(checkButtons[i].id)
+
+  // console.log(minelocation[i] === (checkButtons[i].id))
+  if(minePlacement[0] == checkButtons[i].id){
+    // document.querySelectorAll(".mine").style.backgroundColor = "red"
+    let mineElems = document.querySelectorAll(".mine");
+    for (let i = 0; i < mineElems.length; i++) {
+        mineElems[i].style.backgroundColor = "red";
+  
+    }
+  }
+}
+});
+
+};
