@@ -11,22 +11,37 @@
       <h1>Jose's Hide & Seek</h1>
     </div>
     <div class="dificultyScreen">
-        <div class="dificultyScreen">
-            <h1 class="starterQuestion">
-              How many friends would you like to play with?
-            </h1>
-            <br />
-            <form>
-              <input type="radio" name="choice" value="5" /> 5 Friends
-              <br />
-              <input type="radio" name="choice" value="10" /> 10 Friends
-              <br />
-              <input type="radio" name="choice" value="30" /> 30 Friends
-            </form>
-            <button class="startButton" onclick="inputValue()">Start</button>
-          </div>
+      <h1 class="starterQuestion">
+        How many friends would you like to play with?
+      </h1>
+      <br />
+      <form>
+        <input type="radio" name="choice" value="5" /> 5 Friends
+        <br />
+        <input type="radio" name="choice" value="10" /> 10 Friends
+        <br />
+        <input type="radio" name="choice" value="30" /> 30 Friends
+      </form>
+      <button class="startButton" onclick="inputValue()">Start</button>
     </div>
+    <div>
+      <div class="gameStatus">
+        <div class="numberOfFriends">
+          <i class="fa fa-male" aria-hidden="true"></i>
+          <label class="friendsLeft"></label>
+        </div>
+        <div class="numberOfFlags">
+          <i class="fa fa-flag" aria-hidden="true"></i>
+          <label class="flagsLeft"></label>
+        </div>
+        <div class="timer">
+          <i class="fa fa-hourglass" aria-hidden="true"></i>
+          <label class="minutes">00</label>
+          <label class="colon">:</label>
+          <label class="seconds">00</label>
+        </div>
+      </div>
       <div class="gameBoard"></div>
     </div>
-</body>
+  </body>
 </html>
