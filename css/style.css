@@ -12,3 +12,46 @@
     background-image: url("../images/warehousebg.jpg");
     background-size: cover;
   }
+  
+
+.gameTitle{
+    font-size: xxx-large;
+    text-shadow: 5px 4px 5px #ff0000;
+}
+
+.dificultyScreen{
+background-color: lightgray;
+text-align: -webkit-center;
+}
+
+.starterQuestion{
+    width: 80%;
+}
+
+.startButton{
+    margin: 10px;
+}
+
+input{
+    margin: 10px;
+}
+
+  .gameStatus{
+    display: flex;
+    flex-direction: row;
+    background-color: gray;
+    text-align: end;
+    display: none;
+  }
+
+  .numberOfFriends{
+      width: 25%;
+  }
+
+  .numberOfFlags{
+      width: 25%;
+  }
+
+  .timer{
+      width: 40%;
+  }
