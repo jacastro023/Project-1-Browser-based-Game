@@ -12,7 +12,7 @@
     background-image: url("../images/warehousebg.jpg");
     background-size: cover;
   }
-  
+
 
 .gameTitle{
     font-size: xxx-large;
@@ -36,6 +36,19 @@ input{
     margin: 10px;
 }
 
+.gameBoard {
+    background-color: lightgray;
+    display: grid;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+
+.grid-item {
+    padding: 1em;
+    border: 2px solid black;
+    text-align: center;
+  }
+
   .gameStatus{
     display: flex;
     flex-direction: row;
@@ -54,4 +67,14 @@ input{
 
   .timer{
       width: 40%;
+  }
+
+  button.valid-square {
+    background-color: green;
+    cursor: not-allowed;
+  }
+  
+  button.wrong-square {
+    background-color: red;
+    cursor: not-allowed;
   }
