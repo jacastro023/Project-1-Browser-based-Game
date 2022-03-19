@@ -6,13 +6,19 @@ let secondsLabel = document.querySelector(".seconds");
 let friendsLeft = document.querySelector(".friendsLeft");
 let flagsLeft = document.querySelector(".flagsLeft");
 let resetButton = document.querySelector(".restartButton")
+let resetButtonWin = document.querySelector(".restartButtonWin")
+let resetButtonLose = document.querySelector(".restartButtonLose")
 let gameGrid = document.querySelector(".gameBoard")
+let win = document.querySelector(".winnerScreen")
+let lose = document.querySelector(".loserScreen")
+let gameDisplay = document.querySelector(".gameDisplay")
 let totalSeconds = 0;
 let boardButtons = "";
 let numsArray = "";
 let rows = "";
 let columns = "";
 let minelocation = [];
+let squaresLeft = "";
 
 // setting timer to display seconds and minutes
 function setTime() {
@@ -57,6 +63,7 @@ function inputValue() {
     rows = 4;
     columns = 4;
     friends = 5;
+    squaresLeft = 16;
     // console.log(nums);
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
@@ -73,6 +80,7 @@ function inputValue() {
     friends = 10;
     rows = 9;
     columns = 9;
+    squaresLeft = 81;
     // console.log(nums)
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
@@ -89,6 +97,7 @@ function inputValue() {
     friends = 30;
     rows = 12;
     columns = 12;
+    squaresLeft = 144;
     // console.log(nums)
     boardButtons = document.querySelectorAll(".gameBoard > button");
     // console.log(boardButtons)
@@ -124,6 +133,13 @@ function handleClick(e) {
     showAllWrong();
   } else {
     e.target.className = "grid-item valid-square"
+    -- squaresLeft
+    console.log(squaresLeft)
+    if(squaresLeft == friends){
+      clearTimeout(); 
+      setTimeout(displayWin, 1000);
+
+    }
   }
 }
 
@@ -184,13 +200,19 @@ minePlacement = [e]
 }
 });
 setTimeout(displayLoss, 1000);
+// displayLoss();
 };
 
 
 function displayLoss(){
-alert("you lose")
+  resetButtonLose.style.display = "flex"
+  lose.style.display = "block"
+  gameDisplay.style.zIndex = "0"
+// alert("you lose")
 }
 
 function displayWin(){
-alert("you win")
+  resetButtonWin.style.display = "flex"
+  win.style.display = "block"
+// alert("you win")
 }

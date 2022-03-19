@@ -87,3 +87,51 @@ input{
     font-size: xx-large;
     margin-top: 20px;
   }
+
+  .restartButtonWin{
+    display: none;
+    width: 50%;
+    justify-content: center;
+    margin-left: 25%;
+    font-size: xx-large;
+    margin-top: 20px;
+    background-color: lightblue;
+  }
+
+.restartButtonWin:hover{
+  background-color: blue;
+}
+
+  .restartButtonLose{
+    display: none;
+    width: 50%;
+    justify-content: center;
+    margin-left: 25%;
+    font-size: xx-large;
+    margin-top: 20px;
+    background-color: lightblue;
+  }
+
+  .restartButtonLose:hover{
+    background-color: blue;
+  }
+
+  .winnerScreen{
+    background-color: lightgray;
+    opacity: 85%;
+    text-align: center;
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 25%;
+  }
+
+  .loserScreen{
+    background-color: lightgray;
+    opacity: 85%;
+    text-align: center;
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 25%;
+  }
