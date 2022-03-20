@@ -9,6 +9,7 @@ let resetButton = document.querySelector(".restartButton")
 let resetButtonWin = document.querySelector(".restartButtonWin")
 let resetButtonLose = document.querySelector(".restartButtonLose")
 let gameGrid = document.querySelector(".gameBoard")
+let cannon = document.querySelector(".cannonDisplay")
 let win = document.querySelector(".winnerScreen")
 let lose = document.querySelector(".loserScreen")
 let gameDisplay = document.querySelector(".gameDisplay")
@@ -67,6 +68,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     addFriends();
     resetButton.style.display = "flex"
+    cannon.style.display = "block"
   } else if (friends === "10") {
     // giving variables values and hiding and sisplaying divs
     startingDiv.style.display = "none";
@@ -83,6 +85,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     addFriends();
     resetButton.style.display = "flex"
+    cannon.style.display = "block"
   } else if (friends === "30") {
     // giving variables values and hiding and sisplaying divs
     startingDiv.style.display = "none";
@@ -99,6 +102,7 @@ function inputValue() {
     boardButtons = document.querySelectorAll(".gameBoard > button");
     addFriends();
     resetButton.style.display = "flex"
+    cannon.style.display = "block"
   }
 }
 

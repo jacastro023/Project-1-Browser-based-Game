@@ -43,6 +43,36 @@ input{
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
+.cannonDisplay{
+  width: 250px;
+  height: 280px;
+  display: none;
+  margin-right: 100px;
+  background-color: lightgray;
+  text-align: center;
+  opacity: 90%;
+}
+
+#cannon{
+  width: 100px;
+  float: right;
+  margin-top: -40px;
+}
+
+#stickman{
+  width: 100px;
+}
+
+#matchstick{
+  width: 100px;
+  margin-left: -55px;
+}
+
+.mainDisplay{
+  display: flex;
+  flex-direction: row;
+}
+
 .grid-item {
     padding: 2em;
     border: 2px solid black;
