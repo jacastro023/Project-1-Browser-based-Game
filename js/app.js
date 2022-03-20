@@ -19,6 +19,7 @@ let rows = "";
 let columns = "";
 let minelocation = [];
 let squaresLeft = "";
+let flags = "";
 
 // setting timer to display seconds and minutes
 function setTime() {
@@ -47,60 +48,55 @@ function inputValue() {
       break;
     }
   }
-  // console.log(val)
   friends = val;
-  // console.log(friends)
   if (friends === "") {
     alert("Please make a choice");
   } else if (friends === "5") {
+    // giving variables values and hiding and sisplaying divs
     startingDiv.style.display = "none";
     buildGrid(4, 4);
+    flags = 5;
     status.style.display = "flex";
     friendsLeft.innerText = "5";
-    flagsLeft.innerText = "10";
+    flagsLeft.innerText = flags;
     setInterval(setTime, 1000);
-    // randomUniqueNumbers(10, 5);
     rows = 4;
     columns = 4;
     friends = 5;
     squaresLeft = 16;
-    // console.log(nums);
     boardButtons = document.querySelectorAll(".gameBoard > button");
-    // console.log(boardButtons)
     addFriends();
     resetButton.style.display = "flex"
   } else if (friends === "10") {
+    // giving variables values and hiding and sisplaying divs
     startingDiv.style.display = "none";
     buildGrid(9, 9);
+    flags = 10;
     status.style.display = "flex";
     friendsLeft.innerText = "10";
-    flagsLeft.innerText = "20";
+    flagsLeft.innerText = flags;
     setInterval(setTime, 1000);
-    // randomUniqueNumbers(81, 10);
     friends = 10;
     rows = 9;
     columns = 9;
     squaresLeft = 81;
-    // console.log(nums)
     boardButtons = document.querySelectorAll(".gameBoard > button");
-    // console.log(boardButtons)
     addFriends();
     resetButton.style.display = "flex"
   } else if (friends === "30") {
+    // giving variables values and hiding and sisplaying divs
     startingDiv.style.display = "none";
     buildGrid(12, 12);
+    flags = 30;
     status.style.display = "flex";
     friendsLeft.innerText = "30";
-    flagsLeft.innerText = "50";
+    flagsLeft.innerText = flags;
     setInterval(setTime, 1000);
-    // randomUniqueNumbers(144, 30);
     friends = 30;
     rows = 12;
     columns = 12;
     squaresLeft = 144;
-    // console.log(nums)
     boardButtons = document.querySelectorAll(".gameBoard > button");
-    // console.log(boardButtons)
     addFriends();
     resetButton.style.display = "flex"
   }
@@ -116,7 +112,6 @@ function buildGrid(row, cols) {
   gameContainer.style.setProperty("--grid-cols", cols);
   for (i = 0; i < row * cols; i++) {
     let cell = document.createElement("button"); // create a button for each number
-    // cell.innerText = i; //added number to button starting with #1
     cell.className = "grid-item";
       cell.id = (i); // added an id to each button
     gameContainer.append(cell); // appended to display
@@ -126,45 +121,54 @@ function buildGrid(row, cols) {
 // event listener on board div
 document.querySelector(".gameBoard").addEventListener("click", handleClick);
 
-function handleClick(e) {
+const noContext = document.querySelector('.gameBoard');
 
+// preventing right click menu from appearing and adding the flags on right click instead
+noContext.addEventListener('contextmenu', e => {
+  e.preventDefault();
+    if(e.target.innerText == "🚩"){
+      e.target.innerText = ""
+      ++flags
+      flagsLeft.innerText = flags; // update display of flags
+    } else if (e.target.innerText == "" && flags > 0){ // while flags is greater than 0 add a flag to square and remove one from total flags
+      e.target.innerText = "🚩"
+      --flags
+      flagsLeft.innerText = flags; // update display of flags
+    }
+
+});
+
+function handleClick(e) {
   if (e.target.className === "grid-item mine"){
+    // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
     e.target.className = "grid-item wrong-square"
     showAllWrong();
   } else {
+    // if square clicked is correct, update the class and lower the total amount of squares by one
     e.target.className = "grid-item valid-square"
+    console.log(e.target)
     -- squaresLeft
     console.log(squaresLeft)
-    if(squaresLeft == friends){
+    if(squaresLeft == friends){ // check if only the bombs are left
       clearTimeout(); 
-      setTimeout(displayWin, 1000);
+      setTimeout(displayWin, 1000); // after a second display the winner screen
 
     }
   }
 }
 
-// let nums = "";
-// // get random numbers to place the friends/bombs on
-// const randomUniqueNumbers = (range, count) => {
-//   nums = new Set();
-//   while (nums.size < count) {
-//     nums.add(Math.floor(Math.random() * (range - 1 + 1) + 1));
-//   }
-//   return [...nums];
-// };
-
 function addFriends() {
   console.log(friends);
   let placed = 0;
   while (placed < friends) {
+    // get random values for the row and column to place the bomb
     let column = Math.floor(Math.random() * columns);
     let row = Math.floor(Math.random() * rows);
     let minespot = column * row;
-
+ // using the spots from above place a bomb on it if there isnt one there and update how many have been placed
     if (boardButtons[minespot].className != "grid-item mine") {
       console.log(boardButtons[minespot]);
       boardButtons[minespot].className = "grid-item mine";
-      // minespot = boardButtons[minespot].innerText
       placed++;
       console.log(minespot)
       minelocation.push(minespot);
@@ -173,24 +177,17 @@ function addFriends() {
   }
 }
 
+// display all the wrong spots
 function showAllWrong() {
 console.log(minelocation)
 let minePlacement = ""
-// console.log(e.target.id)
-// console.log(boardButtons)
 let checkButtons = Array.from(boardButtons)
-// console.log(checkButtons)
 
 minelocation.forEach(e => {
 minePlacement = [e]
 
   for (let i = 0; i < checkButtons.length; i++) {
-// console.log(minePlacement[0])
-// console.log(checkButtons[i].id)
-
-  // console.log(minelocation[i] === (checkButtons[i].id))
   if(minePlacement[0] == checkButtons[i].id){
-    // document.querySelectorAll(".mine").style.backgroundColor = "red"
     let mineElems = document.querySelectorAll(".mine");
     for (let i = 0; i < mineElems.length; i++) {
         mineElems[i].style.backgroundColor = "red";
@@ -199,20 +196,17 @@ minePlacement = [e]
   }
 }
 });
-setTimeout(displayLoss, 1000);
-// displayLoss();
+setTimeout(displayLoss, 1000); // after a second display the loser screen
 };
 
-
+// function to display loser screen
 function displayLoss(){
   resetButtonLose.style.display = "flex"
   lose.style.display = "block"
-  gameDisplay.style.zIndex = "0"
-// alert("you lose")
 }
 
+// function to display winner screen
 function displayWin(){
   resetButtonWin.style.display = "flex"
   win.style.display = "block"
-// alert("you win")
 }
