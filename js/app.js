@@ -13,6 +13,7 @@ let cannon = document.querySelector(".cannonDisplay")
 let win = document.querySelector(".winnerScreen")
 let lose = document.querySelector(".loserScreen")
 let gameDisplay = document.querySelector(".gameDisplay")
+let WonInSeconds = document.querySelector(".secondsToWin")
 let totalSeconds = 0;
 let boardButtons = "";
 let numsArray = "";
@@ -107,11 +108,8 @@ function inputValue() {
 }
 
 const gameContainer = document.querySelector(".gameBoard");
-console.log(gameContainer);
 // function that created the grid based on user choice
 function buildGrid(row, cols) {
-  console.log(row);
-  console.log(cols);
   gameContainer.style.setProperty("--grid-rows", rows);
   gameContainer.style.setProperty("--grid-cols", cols);
   for (i = 0; i < row * cols; i++) {
@@ -155,6 +153,7 @@ function handleClick(e) {
     console.log(squaresLeft)
     if(squaresLeft == friends){ // check if only the bombs are left
       clearTimeout(); 
+      WonInSeconds.innerText = `You Won in ${minutesLabel.innerText}:${secondsLabel.innerText}!`
       setTimeout(displayWin, 1000); // after a second display the winner screen
 
     }
@@ -162,7 +161,6 @@ function handleClick(e) {
 }
 
 function addFriends() {
-  console.log(friends);
   let placed = 0;
   while (placed < friends) {
     // get random values for the row and column to place the bomb
@@ -174,7 +172,6 @@ function addFriends() {
       console.log(boardButtons[minespot]);
       boardButtons[minespot].className = "grid-item mine";
       placed++;
-      console.log(minespot)
       minelocation.push(minespot);
       
     }
