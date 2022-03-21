@@ -132,25 +132,31 @@ noContext.addEventListener('contextmenu', e => {
       e.target.innerText = ""
       ++flags
       flagsLeft.innerText = flags; // update display of flags
-    } else if (e.target.innerText == "" && flags > 0){ // while flags is greater than 0 add a flag to square and remove one from total flags
+    } else if (e.target.innerText == "" && flags > 0 && e.target.className === "grid-item" || e.target.className === "grid-item mine"){ // while flags is greater than 0 add a flag to square and remove one from total flags
       e.target.innerText = "🚩"
       --flags
       flagsLeft.innerText = flags; // update display of flags
+    } else if(e.target.className === "grid-item valid-square"){
+      alert("Cant flag a checked square")
     }
 
 });
 
 function handleClick(e) {
   let audio = document.getElementById("audio");
-        audio.play();
   if (e.target.className === "grid-item mine"){
+    audio.play();
     // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
     e.target.className = "grid-item wrong-square"
     showAllWrong();
   } else {
+    if(e.target.className === "grid-item valid-square"){
+      alert("choose a different square")
+    } else {
+      audio.play();
     // if square clicked is correct, update the class and lower the total amount of squares by one
     e.target.className = "grid-item valid-square"
-    console.log(e.target)
+    // console.log(e.target)
     -- squaresLeft
     console.log(squaresLeft)
     if(squaresLeft == friends){ // check if only the bombs are left
@@ -158,6 +164,7 @@ function handleClick(e) {
       WonInSeconds.innerText = `You Won in ${minutesLabel.innerText}:${secondsLabel.innerText}!`
       setTimeout(displayWin, 1000); // after a second display the winner screen
 
+    }
     }
   }
 }
@@ -171,18 +178,20 @@ function addFriends() {
     let minespot = column * row;
  // using the spots from above place a bomb on it if there isnt one there and update how many have been placed
     if (boardButtons[minespot].className != "grid-item mine") {
-      console.log(boardButtons[minespot]);
+      // console.log(boardButtons[minespot]);
       boardButtons[minespot].className = "grid-item mine";
       placed++;
       minelocation.push(minespot);
       
     }
+    
   }
+  console.log(minelocation.sort(function(a, b){return a-b}))
 }
 
 // display all the wrong spots
 function showAllWrong() {
-console.log(minelocation)
+// console.log(minelocation)
 let minePlacement = ""
 let checkButtons = Array.from(boardButtons)
 
@@ -213,3 +222,11 @@ function displayWin(){
   resetButtonWin.style.display = "flex"
   win.style.display = "block"
 }
+
+
+// finding adjacent squares
+//loop through all of the gameboard
+// for (let i = 0; i < boardButtons.length; i++) {
+  
+  
+// }
