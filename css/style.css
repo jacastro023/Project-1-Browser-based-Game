@@ -20,7 +20,7 @@
 }
 
 .dificultyScreen{
-background-color: lightgray;
+background-color: #eb6728;
 text-align: -webkit-center;
 }
 
@@ -48,9 +48,9 @@ input{
   height: 280px;
   display: none;
   margin-right: 100px;
-  background-color: lightgray;
+  background-color: #eb6728;
   text-align: center;
-  opacity: 90%;
+  opacity: 85%;
 }
 
 #cannon{
