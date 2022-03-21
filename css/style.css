@@ -159,10 +159,60 @@ input{
 
   .loserScreen{
     background-color: lightgray;
+    background-image: url(../images/blood-splat.png);
+    background-size: cover;
     opacity: 85%;
     text-align: center;
     display: none;
     z-index: 1;
     position: fixed;
     top: 25%;
+  }
+
+  @media only screen and (max-width: 880px) {
+    .gameTitle {
+      font-size: xx-large;
+  }
+  }
+
+  @media only screen and (max-width: 710px) {
+    .gameTitle {
+      font-size: x-large;
+  }
+  .dificultyScreen{
+    width: 500px;
+    }
+
+  }
+
+  @media only screen and (max-width: 651px) {
+    .cannonDisplay {
+      margin-right: 15px;
+      font-size: x-small;
+      width: 150px;
+      height: 190px;
+      margin-right: 15px;
+  }
+  #stickman {
+    width: 70px;
+    margin-left: -43px;
+  }
+  #matchstick {
+    width: 62px;
+    margin-left: -36px;
+  }
+  #cannon {
+    width: 70px;
+    float: right;
+    margin-top: -20px;
+  }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .gameTitle {
+      font-size: large;
+  }
+  .dificultyScreen{
+    width: 350px;
+    }
   }
