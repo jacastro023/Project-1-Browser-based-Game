@@ -141,6 +141,8 @@ noContext.addEventListener('contextmenu', e => {
 });
 
 function handleClick(e) {
+  let audio = document.getElementById("audio");
+        audio.play();
   if (e.target.className === "grid-item mine"){
     // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
     e.target.className = "grid-item wrong-square"
