@@ -147,28 +147,40 @@ noContext.addEventListener("contextmenu", (e) => {
   }
 });
 
-function handleClick(e) {
+function handleClick(newSquare) {
   let audio = document.getElementById("audio");
-  if (e.target.className === "grid-item mine") {
+  // console.log(newSquare.target.id);
+  // console.log(e.target.id)
+  // let currentId = e.target.id
+  if (newSquare.target.className === "grid-item mine") {
     audio.play();
     // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
-    e.target.className = "grid-item wrong-square";
+    newSquare.target.className = "grid-item wrong-square";
     showAllWrong();
   } else {
-    if (e.target.className === "grid-item valid-square") {
+    if (newSquare.target.className === "grid-item valid-square") {
       alert("choose a different square");
     } else {
       audio.play();
       // if square clicked is correct, update the class and lower the total amount of squares by one
-      e.target.className = "grid-item valid-square";
+      newSquare.target.className = "grid-item valid-square";
       // console.log(e.target.getAttribute("data"))
-      e.target.innerText = e.target.getAttribute("data");
-      if(e.target.getAttribute("data") == 0){
-        e.target.innerText = ""
+      newSquare.target.innerText = newSquare.target.getAttribute("data");
+      if (newSquare.target.getAttribute("data") == 0) {
+        newSquare.target.innerText = "";
+        // console.log(e.target.id)
+        // maybe add recursion here
       }
       // console.log(e.target)
       --squaresLeft;
-      console.log(squaresLeft);
+      if (rows == 4) {
+        checkNeighbor1(newSquare.target.id);
+      } else if (rows == 9) {
+        checkNeighbor2(newSquare.target.id);
+      } else if (rows == 12) {
+        checkNeighbor3(newSquare.target.id);
+      }
+      // console.log(squaresLeft);
       if (squaresLeft == friends) {
         // check if only the bombs are left
         clearTimeout();
@@ -249,7 +261,7 @@ function addFriends() {
           total++; // starting second to last row and if not a right edge check for bomb one down to the right for bomb
         if (i <= 11 && boardButtons[i + 4].classList.contains("mine")) total++; // check square directly below starting second to last row
         boardButtons[i].setAttribute("data", total);
-        console.log(boardButtons[i]);
+        // console.log(boardButtons[i]);
       }
     }
   } else if (rows == 9) {
@@ -299,7 +311,7 @@ function addFriends() {
           total++; // starting second to last row and if not a right edge check for bomb one down to the right for bomb
         if (i <= 71 && boardButtons[i + 9].classList.contains("mine")) total++; // check square directly below starting second to last row
         boardButtons[i].setAttribute("data", total);
-        console.log(boardButtons[i]);
+        // console.log(boardButtons[i]);
       }
     }
   } else if (rows == 12) {
@@ -347,7 +359,8 @@ function addFriends() {
           boardButtons[i + 13].classList.contains("mine")
         )
           total++; // starting second to last row and if not a right edge check for bomb one down to the right for bomb
-        if (i <= 131 && boardButtons[i + 12].classList.contains("mine")) total++; // check square directly below starting second to last row
+        if (i <= 131 && boardButtons[i + 12].classList.contains("mine"))
+          total++; // check square directly below starting second to last row
         boardButtons[i].setAttribute("data", total);
         console.log(boardButtons[i]);
       }
@@ -386,4 +399,187 @@ function displayLoss() {
 function displayWin() {
   resetButtonWin.style.display = "flex";
   win.style.display = "block";
+}
+
+// use recursion function to open op more than one square is safe
+// use same logic as adding adjacent mine numbers to the buttons
+function checkNeighbor1(currentId) {
+  // same as checking for adjacent mines, declare if it is a right or left edge
+  const leftEdge = currentId % 4 === 0;
+  const rightEdge = currentId % 4 === 3;
+  // console.log(document.getElementById(currentId).getAttribute("data"));
+  // if (document.getElementById(currentId).className === "grid-item") {
+    if (document.getElementById(currentId).getAttribute("data") === "0") {
+      if (currentId > 0 && !leftEdge) {
+        const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId > 3 && !rightEdge) {
+        const newId = parseInt(currentId) - 3; // checking square one up to the right
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId > 3) {
+        const newId = parseInt(currentId) - 4; // checks square right on top
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId > 5 && !leftEdge) {
+        const newId = parseInt(currentId) - 5; // checks square one up the the left
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId < 15 && !rightEdge) {
+        const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
+        // console.log(newId);
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId < 12 && !leftEdge) {
+        const newId = parseInt(currentId) + 3; // check square one down to the left
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId < 11 && !rightEdge) {
+        const newId = parseInt(currentId) + 5; // check square one down to the right
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+      if (currentId < 12) {
+        const newId = parseInt(currentId) + 4; // check square right below it
+        const newSquare = document.getElementById(newId);
+        handleClicks(newSquare);
+      }
+    } else if (document.getElementById(currentId).getAttribute("data") != "0") {
+      document.getElementById(currentId).innerText = document.getElementById(currentId).getAttribute("data");
+    }
+  // }
+}
+
+function checkNeighbor2(currentId) {
+  // same as checking for adjacent mines, declare if it is a right or left edge
+  const leftEdge = currentId % 9 === 0;
+  const rightEdge = currentId % 9 === 8;
+
+  if (document.getElementById(currentId).getAttribute("data") === "0") {
+    if (currentId > 0 && !leftEdge) {
+      const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 8 && !rightEdge) {
+      const newId = parseInt(currentId) - 8; // checking square one up to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 9) {
+      const newId = parseInt(currentId) - 9; // checks square right on top
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 11 && !leftEdge) {
+      const newId = parseInt(currentId) - 10; // checks square one up the the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 80 && !rightEdge) {
+      const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
+      // console.log(newId);
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 72 && !leftEdge) {
+      const newId = parseInt(currentId) + 8; // check square one down to the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 71 && !rightEdge) {
+      const newId = parseInt(currentId) + 10; // check square one down to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 72) {
+      const newId = parseInt(currentId) + 9; // check square right below it
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+  } else if (document.getElementById(currentId).getAttribute("data") != "0") {
+    document.getElementById(currentId).innerText = document
+      .getElementById(currentId)
+      .getAttribute("data");
+  }
+}
+
+function checkNeighbor3(currentId) {
+  // same as checking for adjacent mines, declare if it is a right or left edge
+  const leftEdge = currentId % 12 === 0;
+  const rightEdge = currentId % 12 === 11;
+
+  if (document.getElementById(currentId).getAttribute("data") === "0") {
+    if (currentId > 0 && !leftEdge) {
+      const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 11 && !rightEdge) {
+      const newId = parseInt(currentId) - 11; // checking square one up to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 12) {
+      const newId = parseInt(currentId) - 12; // checks square right on top
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 14 && !leftEdge) {
+      const newId = parseInt(currentId) - 13; // checks square one up the the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 143 && !rightEdge) {
+      const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
+      // console.log(newId);
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 132 && !leftEdge) {
+      const newId = parseInt(currentId) + 11; // check square one down to the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 131 && !rightEdge) {
+      const newId = parseInt(currentId) + 13; // check square one down to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 132) {
+      const newId = parseInt(currentId) + 12; // check square right below it
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+  } else if (document.getElementById(currentId).getAttribute("data") != "0") {
+    document.getElementById(currentId).innerText = document
+      .getElementById(currentId)
+      .getAttribute("data");
+  }
+}
+
+function handleClicks(newSquare) {
+  // console.log("this is new: " + newSquare.id);
+  if (newSquare.className === "grid-item") {
+    // console.log(squaresLeft)
+    if (newSquare.getAttribute("data") === "0") {
+      --squaresLeft;
+      console.log(newSquare.id)
+      newSquare.className = "grid-item valid-square";
+      checkNeighbor1(newSquare.id);
+    } else {
+      --squaresLeft;
+      newSquare.className = "grid-item valid-square";
+      document.getElementById(newSquare.id).innerText = document
+        .getElementById(newSquare.id)
+        .getAttribute("data");
+    }
+  } 
 }
