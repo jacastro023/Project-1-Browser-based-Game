@@ -40,6 +40,9 @@ function timer(val) {
   }
 }
 
+function stopTimer(){
+  clearInterval(setTime);
+}
 // getting the selected choice from the user
 function inputValue() {
   let radios = document.getElementsByName("choice");
@@ -61,7 +64,7 @@ function inputValue() {
     status.style.display = "flex";
     friendsLeft.innerText = "5";
     flagsLeft.innerText = flags;
-    setInterval(setTime, 1000);
+    let hourglass = setInterval(setTime, 1000);
     rows = 4;
     columns = 4;
     friends = 5;
@@ -78,7 +81,7 @@ function inputValue() {
     status.style.display = "flex";
     friendsLeft.innerText = "10";
     flagsLeft.innerText = flags;
-    setInterval(setTime, 1000);
+    let hourglass = setInterval(setTime, 1000);
     friends = 10;
     rows = 9;
     columns = 9;
@@ -95,7 +98,7 @@ function inputValue() {
     status.style.display = "flex";
     friendsLeft.innerText = "30";
     flagsLeft.innerText = flags;
-    setInterval(setTime, 1000);
+    let hourglass = setInterval(setTime, 1000);
     friends = 30;
     rows = 12;
     columns = 12;
@@ -183,7 +186,8 @@ function handleClick(newSquare) {
       // console.log(squaresLeft);
       if (squaresLeft == friends) {
         // check if only the bombs are left
-        clearTimeout();
+        // clearInterval(setTime);
+        stopTimer();
         WonInSeconds.innerText = `You Won in ${minutesLabel.innerText}:${secondsLabel.innerText}!`;
         setTimeout(displayWin, 1000); // after a second display the winner screen
       }
