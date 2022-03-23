@@ -40,9 +40,6 @@ function timer(val) {
   }
 }
 
-function stopTimer() {
-  clearInterval(setTime);
-}
 // getting the selected choice from the user
 function inputValue() {
   let radios = document.getElementsByName("choice");

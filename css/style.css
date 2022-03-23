@@ -172,6 +172,12 @@ button.wrong-square {
   .gameTitle {
     font-size: xx-large;
   }
+  .grid-item {
+    padding: 1em;
+  }
+  .restartButton {
+    font-size: large;
+  }
 }
 
 @media only screen and (max-width: 710px) {
@@ -185,11 +191,10 @@ button.wrong-square {
 
 @media only screen and (max-width: 651px) {
   .cannonDisplay {
-    margin-right: 15px;
+    margin-right: 0px;
     font-size: x-small;
     width: 150px;
     height: 190px;
-    margin-right: 15px;
   }
   #stickman {
     width: 70px;
@@ -212,5 +217,12 @@ button.wrong-square {
   }
   .dificultyScreen {
     width: 350px;
+  }
+  .mainDisplay{
+    flex-direction: column;
+  }
+  .cannonDisplay{
+    align-self: center;
+    margin-bottom: 15px;
   }
 }
