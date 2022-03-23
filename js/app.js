@@ -407,6 +407,7 @@ function displayWin() {
 
 // use recursion function to open op more than one square is safe
 // use same logic as adding adjacent mine numbers to the buttons
+// this is used for easy grid : together with handleclicks()
 function checkNeighbor1(currentId) {
   // same as checking for adjacent mines, declare if it is a right or left edge
   const leftEdge = currentId % 4 === 0;
@@ -463,6 +464,9 @@ function checkNeighbor1(currentId) {
   // }
 }
 
+// use recursion function to open op more than one square is safe
+// use same logic as adding adjacent mine numbers to the buttons
+// this is used for medium grid : together with handleclicks2()
 function checkNeighbor2(currentId) {
   // same as checking for adjacent mines, declare if it is a right or left edge
   const leftEdge = currentId % 9 === 0;
@@ -473,43 +477,43 @@ function checkNeighbor2(currentId) {
     if (currentId > 0 && !leftEdge) {
       const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId > 8 && !rightEdge) {
       const newId = parseInt(currentId) - 8; // checking square one up to the right
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId > 8) {
       const newId = parseInt(currentId) - 9; // checks square right on top
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId > 8 && !leftEdge) {
       const newId = parseInt(currentId) - 9; // checks square one up the the left
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId < 80 && !rightEdge) {
       const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
       // console.log(newId);
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId < 72 && !leftEdge) {
       const newId = parseInt(currentId) + 8; // check square one down to the left
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId < 71 && !rightEdge) {
       const newId = parseInt(currentId) + 10; // check square one down to the right
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
     if (currentId < 72) {
       const newId = parseInt(currentId) + 9; // check square right below it
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks2(newSquare);
     }
   } else if (document.getElementById(currentId).getAttribute("data") != "0") {
     document.getElementById(currentId).innerText = document
@@ -518,6 +522,9 @@ function checkNeighbor2(currentId) {
   }
 }
 
+// use recursion function to open op more than one square is safe
+// use same logic as adding adjacent mine numbers to the buttons
+// this is used for large grid : together with handleclicks3()
 function checkNeighbor3(currentId) {
   // same as checking for adjacent mines, declare if it is a right or left edge
   const leftEdge = currentId % 12 === 0;
@@ -527,42 +534,42 @@ function checkNeighbor3(currentId) {
     if (currentId > 0 && !leftEdge) {
       const newId = parseInt(currentId) - 1; // to check the square right before it, remove 1 from the id
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId > 11 && !rightEdge) {
       const newId = parseInt(currentId) - 11; // checking square one up to the right
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId > 11) {
       const newId = parseInt(currentId) - 12; // checks square right on top
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId > 11 && !leftEdge) {
       const newId = parseInt(currentId) - 13; // checks square one up the the left
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId < 143 && !rightEdge) {
       const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId < 132 && !leftEdge) {
       const newId = parseInt(currentId) + 11; // check square one down to the left
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId < 131 && !rightEdge) {
       const newId = parseInt(currentId) + 13; // check square one down to the right
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
     if (currentId < 132) {
       const newId = parseInt(currentId) + 12; // check square right below it
       const newSquare = document.getElementById(newId);
-      handleClicks(newSquare);
+      handleClicks3(newSquare);
     }
   } else if (document.getElementById(currentId).getAttribute("data") != "0") {
     document.getElementById(currentId).innerText = document
@@ -571,16 +578,54 @@ function checkNeighbor3(currentId) {
   }
 }
 
+// this function will decide if to send it back through the loop or just display the square for easy grid
 function handleClicks(newSquare) {
-  // console.log("this is new: " + newSquare.id);
   if (newSquare.className === "grid-item") {
-    // console.log(squaresLeft)
     if (newSquare.getAttribute("data") === "0") {
+      // if no neighboring bombs, display as safe square and send it though the loop checkneighbor
       --squaresLeft;
-      console.log(newSquare.id);
       newSquare.className = "grid-item valid-square";
-      checkNeighbor1(newSquare.id);
+      checkNeighbor1(newSquare.id); // send the square back through the loop to check for neighboring bombs
     } else {
+      // decrease the total amount of squares left and show the value of neighboring bombs
+      --squaresLeft;
+      newSquare.className = "grid-item valid-square";
+      document.getElementById(newSquare.id).innerText = document
+        .getElementById(newSquare.id)
+        .getAttribute("data");
+    }
+  }
+}
+
+// this function will decide if to send it back through the loop or just display the square for medium grid
+function handleClicks2(newSquare) {
+  if (newSquare.className === "grid-item") {
+    if (newSquare.getAttribute("data") === "0") {
+      // if no neighboring bombs, display as safe square and send it though the loop checkneighbor
+      --squaresLeft;
+      newSquare.className = "grid-item valid-square";
+      checkNeighbor2(newSquare.id); // send the square back through the loop to check for neighboring bombs
+    } else {
+      // decrease the total amount of squares left and show the value of neighboring bombs
+      --squaresLeft;
+      newSquare.className = "grid-item valid-square";
+      document.getElementById(newSquare.id).innerText = document
+        .getElementById(newSquare.id)
+        .getAttribute("data");
+    }
+  }
+}
+
+// this function will decide if to send it back through the loop or just display the square for large grid
+function handleClicks3(newSquare) {
+  if (newSquare.className === "grid-item") {
+    if (newSquare.getAttribute("data") === "0") {
+      // if no neighboring bombs, display as safe square and send it though the loop checkneighbor
+      --squaresLeft;
+      newSquare.className = "grid-item valid-square";
+      checkNeighbor3(newSquare.id); // send the square back through the loop to check for neighboring bombs
+    } else {
+      // decrease the total amount of squares left and show the value of neighboring bombs
       --squaresLeft;
       newSquare.className = "grid-item valid-square";
       document.getElementById(newSquare.id).innerText = document
