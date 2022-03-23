@@ -1,50 +1,49 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: Helvetica;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/warehousebg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-
-.gameTitle{
-    font-size: xxx-large;
-    text-shadow: 5px 4px 5px #ff0000;
+  box-sizing: border-box;
 }
 
-.dificultyScreen{
-background-color: #eb6728;
-text-align: -webkit-center;
+body {
+  margin: 0;
+  font-family: Helvetica;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/warehousebg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.starterQuestion{
-    width: 80%;
+.gameTitle {
+  font-size: xxx-large;
+  text-shadow: 5px 4px 5px #ff0000;
 }
 
-.startButton{
-    margin: 10px;
+.dificultyScreen {
+  background-color: #eb6728;
+  text-align: -webkit-center;
 }
 
-input{
-    margin: 10px;
+.starterQuestion {
+  width: 80%;
+}
+
+.startButton {
+  margin: 10px;
+}
+
+input {
+  margin: 10px;
 }
 
 .gameBoard {
-    background-color: lightgray;
-    display: grid;
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
+  background-color: lightgray;
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-.cannonDisplay{
+.cannonDisplay {
   width: 250px;
   height: 280px;
   display: none;
@@ -54,144 +53,143 @@ input{
   opacity: 85%;
 }
 
-#cannon{
+#cannon {
   width: 100px;
   float: right;
   margin-top: -40px;
 }
 
-#stickman{
+#stickman {
   width: 100px;
 }
 
-#matchstick{
+#matchstick {
   width: 100px;
   margin-left: -55px;
 }
 
-.mainDisplay{
+.mainDisplay {
   display: flex;
   flex-direction: row;
 }
 
 .grid-item {
-    padding: 2em;
-    border: 2px solid black;
-    text-align: center;
-  }
+  padding: 2em;
+  border: 2px solid black;
+  text-align: center;
+}
 
-  .gameStatus{
-    display: flex;
-    flex-direction: row;
-    background-color: gray;
-    text-align: end;
-    display: none;
-  }
+.gameStatus {
+  display: flex;
+  flex-direction: row;
+  background-color: gray;
+  text-align: end;
+  display: none;
+}
 
-  .numberOfFriends{
-      width: 25%;
-  }
+.numberOfFriends {
+  width: 25%;
+}
 
-  .numberOfFlags{
-      width: 25%;
-  }
+.numberOfFlags {
+  width: 25%;
+}
 
-  .timer{
-      width: 40%;
-  }
+.timer {
+  width: 40%;
+}
 
-  button.valid-square {
-    background-color: green;
-    cursor: not-allowed;
-  }
-  
-  button.wrong-square {
-    background-color: red;
-    cursor: not-allowed;
-  }
+button.valid-square {
+  background-color: green;
+  cursor: not-allowed;
+}
 
-  .restartButton{
-    display: none;
-    width: 50%;
-    justify-content: center;
-    margin-left: 25%;
-    font-size: xx-large;
-    margin-top: 20px;
-  }
+button.wrong-square {
+  background-color: red;
+  cursor: not-allowed;
+}
 
-  .restartButtonWin{
-    display: none;
-    width: 50%;
-    justify-content: center;
-    margin-left: 25%;
-    font-size: xx-large;
-    margin-top: 20px;
-    background-color: lightblue;
-  }
+.restartButton {
+  display: none;
+  width: 50%;
+  justify-content: center;
+  margin-left: 25%;
+  font-size: xx-large;
+  margin-top: 20px;
+}
 
-.restartButtonWin:hover{
+.restartButtonWin {
+  display: none;
+  width: 50%;
+  justify-content: center;
+  margin-left: 25%;
+  font-size: xx-large;
+  margin-top: 20px;
+  background-color: lightblue;
+}
+
+.restartButtonWin:hover {
   background-color: blue;
 }
 
-  .restartButtonLose{
-    display: none;
-    width: 50%;
-    justify-content: center;
-    margin-left: 25%;
+.restartButtonLose {
+  display: none;
+  width: 50%;
+  justify-content: center;
+  margin-left: 25%;
+  font-size: xx-large;
+  margin-top: 20px;
+  background-color: lightblue;
+}
+
+.restartButtonLose:hover {
+  background-color: blue;
+}
+
+.winnerScreen {
+  background-color: lightgray;
+  opacity: 85%;
+  text-align: center;
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 25%;
+}
+
+.loserScreen {
+  background-color: lightgray;
+  background-image: url(../images/blood-splat.png);
+  background-size: cover;
+  opacity: 85%;
+  text-align: center;
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top: 25%;
+}
+
+@media only screen and (max-width: 880px) {
+  .gameTitle {
     font-size: xx-large;
-    margin-top: 20px;
-    background-color: lightblue;
   }
+}
 
-  .restartButtonLose:hover{
-    background-color: blue;
+@media only screen and (max-width: 710px) {
+  .gameTitle {
+    font-size: x-large;
   }
-
-  .winnerScreen{
-    background-color: lightgray;
-    opacity: 85%;
-    text-align: center;
-    display: none;
-    z-index: 1;
-    position: fixed;
-    top: 25%;
-  }
-
-  .loserScreen{
-    background-color: lightgray;
-    background-image: url(../images/blood-splat.png);
-    background-size: cover;
-    opacity: 85%;
-    text-align: center;
-    display: none;
-    z-index: 1;
-    position: fixed;
-    top: 25%;
-  }
-
-  @media only screen and (max-width: 880px) {
-    .gameTitle {
-      font-size: xx-large;
-  }
-  }
-
-  @media only screen and (max-width: 710px) {
-    .gameTitle {
-      font-size: x-large;
-  }
-  .dificultyScreen{
+  .dificultyScreen {
     width: 500px;
-    }
-
   }
+}
 
-  @media only screen and (max-width: 651px) {
-    .cannonDisplay {
-      margin-right: 15px;
-      font-size: x-small;
-      width: 150px;
-      height: 190px;
-      margin-right: 15px;
+@media only screen and (max-width: 651px) {
+  .cannonDisplay {
+    margin-right: 15px;
+    font-size: x-small;
+    width: 150px;
+    height: 190px;
+    margin-right: 15px;
   }
   #stickman {
     width: 70px;
@@ -206,13 +204,13 @@ input{
     float: right;
     margin-top: -20px;
   }
-  }
+}
 
-  @media only screen and (max-width: 500px) {
-    .gameTitle {
-      font-size: large;
+@media only screen and (max-width: 500px) {
+  .gameTitle {
+    font-size: large;
   }
-  .dificultyScreen{
+  .dificultyScreen {
     width: 350px;
-    }
   }
+}

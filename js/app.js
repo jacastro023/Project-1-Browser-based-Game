@@ -40,7 +40,7 @@ function timer(val) {
   }
 }
 
-function stopTimer(){
+function stopTimer() {
   clearInterval(setTime);
 }
 // getting the selected choice from the user
@@ -413,51 +413,53 @@ function checkNeighbor1(currentId) {
   const rightEdge = currentId % 4 === 3;
   // console.log(document.getElementById(currentId).getAttribute("data"));
   // if (document.getElementById(currentId).className === "grid-item") {
-    if (document.getElementById(currentId).getAttribute("data") === "0") {
-      if (currentId > 0 && !leftEdge) {
-        const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 3 && !rightEdge) {
-        const newId = parseInt(currentId) - 3; // checking square one up to the right
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 3) {
-        const newId = parseInt(currentId) - 4; // checks square right on top
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 5 && !leftEdge) {
-        const newId = parseInt(currentId) - 5; // checks square one up the the left
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 15 && !rightEdge) {
-        const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
-        // console.log(newId);
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 12 && !leftEdge) {
-        const newId = parseInt(currentId) + 3; // check square one down to the left
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 11 && !rightEdge) {
-        const newId = parseInt(currentId) + 5; // check square one down to the right
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 12) {
-        const newId = parseInt(currentId) + 4; // check square right below it
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-    } else if (document.getElementById(currentId).getAttribute("data") != "0") {
-      document.getElementById(currentId).innerText = document.getElementById(currentId).getAttribute("data");
+  if (document.getElementById(currentId).getAttribute("data") === "0") {
+    if (currentId > 0 && !leftEdge) {
+      const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
     }
+    if (currentId > 3 && !rightEdge) {
+      const newId = parseInt(currentId) - 3; // checking square one up to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 3) {
+      const newId = parseInt(currentId) - 4; // checks square right on top
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 5 && !leftEdge) {
+      const newId = parseInt(currentId) - 5; // checks square one up the the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 15 && !rightEdge) {
+      const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
+      // console.log(newId);
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 12 && !leftEdge) {
+      const newId = parseInt(currentId) + 3; // check square one down to the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 11 && !rightEdge) {
+      const newId = parseInt(currentId) + 5; // check square one down to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 12) {
+      const newId = parseInt(currentId) + 4; // check square right below it
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+  } else if (document.getElementById(currentId).getAttribute("data") != "0") {
+    document.getElementById(currentId).innerText = document
+      .getElementById(currentId)
+      .getAttribute("data");
+  }
   // }
 }
 
@@ -467,51 +469,53 @@ function checkNeighbor2(currentId) {
   const rightEdge = currentId % 9 === 8;
   // console.log(document.getElementById(currentId).getAttribute("data"));
   // if (document.getElementById(currentId).className === "grid-item") {
-    if (document.getElementById(currentId).getAttribute("data") === "0") {
-      if (currentId > 0 && !leftEdge) {
-        const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 8 && !rightEdge) {
-        const newId = parseInt(currentId) - 8; // checking square one up to the right
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 8) {
-        const newId = parseInt(currentId) - 9; // checks square right on top
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId > 8 && !leftEdge) {
-        const newId = parseInt(currentId) - 9; // checks square one up the the left
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 80 && !rightEdge) {
-        const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
-        // console.log(newId);
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 72 && !leftEdge) {
-        const newId = parseInt(currentId) + 8; // check square one down to the left
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 71 && !rightEdge) {
-        const newId = parseInt(currentId) + 10; // check square one down to the right
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-      if (currentId < 72) {
-        const newId = parseInt(currentId) + 9; // check square right below it
-        const newSquare = document.getElementById(newId);
-        handleClicks(newSquare);
-      }
-    } else if (document.getElementById(currentId).getAttribute("data") != "0") {
-      document.getElementById(currentId).innerText = document.getElementById(currentId).getAttribute("data");
+  if (document.getElementById(currentId).getAttribute("data") === "0") {
+    if (currentId > 0 && !leftEdge) {
+      const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
     }
+    if (currentId > 8 && !rightEdge) {
+      const newId = parseInt(currentId) - 8; // checking square one up to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 8) {
+      const newId = parseInt(currentId) - 9; // checks square right on top
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId > 8 && !leftEdge) {
+      const newId = parseInt(currentId) - 9; // checks square one up the the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 80 && !rightEdge) {
+      const newId = parseInt(currentId) + 1; // make the id an intiger and add 1 to check square right of it
+      // console.log(newId);
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 72 && !leftEdge) {
+      const newId = parseInt(currentId) + 8; // check square one down to the left
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 71 && !rightEdge) {
+      const newId = parseInt(currentId) + 10; // check square one down to the right
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+    if (currentId < 72) {
+      const newId = parseInt(currentId) + 9; // check square right below it
+      const newSquare = document.getElementById(newId);
+      handleClicks(newSquare);
+    }
+  } else if (document.getElementById(currentId).getAttribute("data") != "0") {
+    document.getElementById(currentId).innerText = document
+      .getElementById(currentId)
+      .getAttribute("data");
+  }
 }
 
 function checkNeighbor3(currentId) {
@@ -561,7 +565,9 @@ function checkNeighbor3(currentId) {
       handleClicks(newSquare);
     }
   } else if (document.getElementById(currentId).getAttribute("data") != "0") {
-    document.getElementById(currentId).innerText = document.getElementById(currentId).getAttribute("data");
+    document.getElementById(currentId).innerText = document
+      .getElementById(currentId)
+      .getAttribute("data");
   }
 }
 
@@ -571,7 +577,7 @@ function handleClicks(newSquare) {
     // console.log(squaresLeft)
     if (newSquare.getAttribute("data") === "0") {
       --squaresLeft;
-      console.log(newSquare.id)
+      console.log(newSquare.id);
       newSquare.className = "grid-item valid-square";
       checkNeighbor1(newSquare.id);
     } else {
@@ -581,5 +587,5 @@ function handleClicks(newSquare) {
         .getElementById(newSquare.id)
         .getAttribute("data");
     }
-  } 
+  }
 }
