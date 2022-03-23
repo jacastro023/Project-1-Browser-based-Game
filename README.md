@@ -34,6 +34,7 @@ This is the diplay screen for the loser:
     that have been previously declared in the css file.
 
 ## Getting Started
+    I recoment lowering the sound if wearing headphones.
     You play the game just like any other minesweeper game, 
     click on a square and hope it is a safe square:
 ##### Live Page:
@@ -42,6 +43,6 @@ https://jacastro023.github.io/Project-1-Browser-based-Game/
 ## Next Steps:
     * Adding a high score page
     * Adding more difficulty levels
-    * Make the clicks more interactive, 
+    * Make the clicks more interactive, and animated
       show how the square opens up to show theres either nothing inside or theres a bomb inside.
     * Make the view and design more visually appealing
