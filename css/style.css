@@ -210,6 +210,20 @@ button.wrong-square {
     float: right;
     margin-top: -20px;
   }
+  .loserScreen {
+    background-repeat: no-repeat;
+    width: 500px;
+  }
+  .loserScreen > img {
+    width: 500px;
+  }
+  .winnerScreen {
+    background-repeat: no-repeat;
+    width: 500px;
+  }
+  .winnerScreen > img {
+    width: 500px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -225,5 +239,19 @@ button.wrong-square {
   .cannonDisplay{
     align-self: center;
     margin-bottom: 15px;
+  }
+  .loserScreen {
+    background-repeat: no-repeat;
+    width: 400px;
+  }
+  .loserScreen > img {
+    width: 400px;
+  }
+  .winnerScreen {
+    background-repeat: no-repeat;
+    width: 400px;
+  }
+  .winnerScreen > img {
+    width: 400px;
   }
 }
