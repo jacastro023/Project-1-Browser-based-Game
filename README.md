@@ -2,7 +2,7 @@
     The game originates from the 1960s, and the objective of the game is to clear a rectangular board 
     containing hidden "mines" or bombs without detonating any of them, with help from clues about the 
     number of neighbouring mines in each field. You can use flags to select squares that you deem to be 
-    risky and you easily remmember that there might be a bomb in that square based on the numbers of 
+    risky and you can easily remember that there might be a bomb in that square based on the numbers of 
     neighborign mines.
 
 ## Game Screenshots
