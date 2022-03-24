@@ -162,6 +162,11 @@ function handleClick(newSquare) {
       alert("choose a different square");
     } else {
       audio.play();
+      console.log(newSquare.target.innerText)
+      if(newSquare.target.innerText == "🚩"){
+        ++flags;
+        flagsLeft.innerText = flags;
+      }
       // if square clicked is correct, update the class and lower the total amount of squares by one
       newSquare.target.className = "grid-item valid-square";
       // console.log(e.target.getAttribute("data"))
