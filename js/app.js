@@ -54,7 +54,7 @@ function inputValue() {
   if (friends === "") {
     alert("Please make a choice");
   } else if (friends === "5") {
-    // giving variables values and hiding and sisplaying divs
+    // giving variables values and hiding and displaying divs
     startingDiv.style.display = "none";
     buildGrid(4, 4);
     flags = 5;
@@ -71,7 +71,7 @@ function inputValue() {
     resetButton.style.display = "flex";
     cannon.style.display = "block";
   } else if (friends === "10") {
-    // giving variables values and hiding and sisplaying divs
+    // giving variables values and hiding and displaying divs
     startingDiv.style.display = "none";
     buildGrid(9, 9);
     flags = 10;
@@ -88,7 +88,7 @@ function inputValue() {
     resetButton.style.display = "flex";
     cannon.style.display = "block";
   } else if (friends === "30") {
-    // giving variables values and hiding and sisplaying divs
+    // giving variables values and hiding and displaying divs
     startingDiv.style.display = "none";
     buildGrid(12, 12);
     flags = 30;
@@ -148,36 +148,29 @@ noContext.addEventListener("contextmenu", (e) => {
 });
 
 function handleClick(newSquare) {
-  let audio = document.getElementById("audio");
-  // console.log(newSquare.target.id);
-  // console.log(e.target.id)
-  // let currentId = e.target.id
+  let audio = document.getElementById("audio"); // grabing the audio element from html
   if (newSquare.target.className === "grid-item mine") {
-    audio.play();
+    audio.play(); // on click play the audio
     // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
     newSquare.target.className = "grid-item wrong-square";
     showAllWrong();
   } else {
-    if (newSquare.target.className === "grid-item valid-square") {
-      alert("choose a different square");
+    if (newSquare.target.className === "grid-item valid-square") { // check if square has already been clicked
+      alert("choose a different square"); 
     } else {
-      audio.play();
-      console.log(newSquare.target.innerText)
+      audio.play(); // on click play the audio
       if(newSquare.target.innerText == "🚩"){
         ++flags;
         flagsLeft.innerText = flags;
       }
       // if square clicked is correct, update the class and lower the total amount of squares by one
       newSquare.target.className = "grid-item valid-square";
-      // console.log(e.target.getAttribute("data"))
       newSquare.target.innerText = newSquare.target.getAttribute("data");
       if (newSquare.target.getAttribute("data") == 0) {
         newSquare.target.innerText = "";
-        // console.log(e.target.id)
-        // maybe add recursion here
       }
-      // console.log(e.target)
       --squaresLeft;
+      // based on grid size, send through recursive function
       if (rows == 4) {
         checkNeighbor1(newSquare.target.id);
       } else if (rows == 9) {
@@ -185,11 +178,8 @@ function handleClick(newSquare) {
       } else if (rows == 12) {
         checkNeighbor3(newSquare.target.id);
       }
-      // console.log(squaresLeft);
       if (squaresLeft == friends) {
         // check if only the bombs are left
-        // clearInterval(setTime);
-        stopTimer();
         WonInSeconds.innerText = `You Won in ${minutesLabel.innerText}:${secondsLabel.innerText}!`;
         setTimeout(displayWin, 1000); // after a second display the winner screen
       }
@@ -206,9 +196,8 @@ function addFriends() {
     let minespot = column * row;
     // using the spots from above place a bomb on it if there isnt one there and update how many have been placed
     if (boardButtons[minespot].className != "grid-item mine") {
-      // console.log(boardButtons[minespot]);
       boardButtons[minespot].className = "grid-item mine";
-      placed++;
+      placed++; // add one to places to see if it is the same amount as bombs needed
       minelocation.push(minespot);
     }
   }
@@ -267,7 +256,6 @@ function addFriends() {
           total++; // starting second to last row and if not a right edge check for bomb one down to the right for bomb
         if (i <= 11 && boardButtons[i + 4].classList.contains("mine")) total++; // check square directly below starting second to last row
         boardButtons[i].setAttribute("data", total);
-        // console.log(boardButtons[i]);
       }
     }
   } else if (rows == 9) {
@@ -376,7 +364,6 @@ function addFriends() {
 
 // display all the wrong spots
 function showAllWrong() {
-  // console.log(minelocation)
   let minePlacement = "";
   let checkButtons = Array.from(boardButtons);
 
@@ -414,8 +401,6 @@ function checkNeighbor1(currentId) {
   // same as checking for adjacent mines, declare if it is a right or left edge
   const leftEdge = currentId % 4 === 0;
   const rightEdge = currentId % 4 === 3;
-  // console.log(document.getElementById(currentId).getAttribute("data"));
-  // if (document.getElementById(currentId).className === "grid-item") {
   if (document.getElementById(currentId).getAttribute("data") === "0") {
     if (currentId > 0 && !leftEdge) {
       const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
@@ -473,8 +458,6 @@ function checkNeighbor2(currentId) {
   // same as checking for adjacent mines, declare if it is a right or left edge
   const leftEdge = currentId % 9 === 0;
   const rightEdge = currentId % 9 === 8;
-  // console.log(document.getElementById(currentId).getAttribute("data"));
-  // if (document.getElementById(currentId).className === "grid-item") {
   if (document.getElementById(currentId).getAttribute("data") === "0") {
     if (currentId > 0 && !leftEdge) {
       const newId = parseInt(currentId) - 1; // to check the square right before it remove 1 from the id
