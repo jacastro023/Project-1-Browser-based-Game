@@ -188,6 +188,7 @@ function handleClick(newSquare) {
   }
 }
 
+// adding mines
 function addFriends() {
   let placed = 0;
   while (placed < friends) {
