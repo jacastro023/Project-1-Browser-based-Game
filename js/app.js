@@ -153,6 +153,7 @@ function handleClick(newSquare) {
     audio.play(); // on click play the audio
     // if square with a bomb is clicked give it the wrong-square class and call the function to display the rest of the wrong ones
     newSquare.target.className = "grid-item wrong-square";
+    newSquare.target.innerText = "😵";
     showAllWrong();
   } else {
     if (newSquare.target.className === "grid-item valid-square") { // check if square has already been clicked
@@ -375,6 +376,7 @@ function showAllWrong() {
         let mineElems = document.querySelectorAll(".mine");
         for (let i = 0; i < mineElems.length; i++) {
           mineElems[i].style.backgroundColor = "red";
+          mineElems[i].innerText = "😵";
         }
       }
     }
